@@ -1,30 +1,141 @@
-nav {
+header {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.8rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter';
     height: 8rem;
-    background-color: rgb(214, 214, 193);
-    border-radius: 15px 15px 0px 0px;
+    background-color: #FFF7ED;
+    /* border-radius: 15px 15px 0px 0px; */
+    max-width: 100%;
 }
 
-nav > div{
+nav {
     display: flex;
-    gap: 1rem;
-    margin-right: 1rem;
+    gap: 2rem;
+    margin-right: 3rem;
 }
 
-nav > div > a {
+nav > a {
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.5rem;
-    color: black;
+    color: #4D4D4D;
 }
 
-nav h1{
+nav > a:hover {
+  border-bottom: 2px solid #16161657; /* Only changes color */
+}
+
+.site-logo{
+    text-decoration: none;
     justify-self: flex-start;
     flex: 1;
-    margin-left: 1rem;
+    font-size: 2.5rem;
+    margin-left: 1.5rem;
     font-weight: bolder;
+    color: #000000;
+}
+
+.home-container{
+    margin-bottom: -1px;
+    color: white;
+    height: 80vh;
+    background-image: url('/src/assets/images/homebg.png'); /* relative or absolute path */
+    background-size: cover;       /*Ensures the image covers the entire container */
+    background-position: center;  /*Center the image */
+    background-repeat: no-repeat;  /*Prevents the image from repeating */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    
+    text-align: start;
+    gap: 2rem;
+
+}
+
+.home-container > h1{
+    width: 800px;
+    font-size: 3.5rem;
+}
+
+.home-container > p{
+    width: 800px;
+    font-size: 1.3rem;
+}
+
+.home-container > .findVanBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF8C38;
+    text-decoration: none;
+    height: 3.5rem;
+    color: white;
+    width: 800px;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.about-page-container{
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.about-page-container img {
+  width: 100vw;
+  height: auto;
+  display: block;
+}
+
+.about-page-content{
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    font-size: 1.3rem;
+    text-align: start;
+    gap: 1rem;
+}
+
+.about-page-cta{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 800px;
+    background-color: #FFCC8D;
+    padding: 3rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+}
+
+.about-page-cta > h2{
+    font-size: 2.5rem;
+    width: 600px;
+}
+
+.about-page-cta > a{
+    background-color: #000000;
+    text-decoration: none;
+    padding: 18px 30px;
+    color: white;
+    border-radius: 10px;
+    max-width: 200px;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #252525;
+    height: 90px;
 }

@@ -1,23 +1,26 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
-import Vans from './pages/Vans'
+import Home from './pages/Home'
 import About from './pages/About'
 
 export default function App() {
   return(
     <BrowserRouter>
-      <nav>
-        <h1>#VANLIFE</h1>
-        <div>
+      <header>
+        <Link className='site-logo' to='/'>#VANLIFE</Link>
+        <nav>
           <Link to='/about'>About</Link>
           <Link to='/'>Vans</Link>
-        </div>
-      </nav>
+        </nav>
+      </header>
       <Routes>
-        <Route path='/' element={<Vans/>}/>
-        <Route path='/home' element={<Vans/>}/>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/home' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
       </Routes>
+      <footer>
+        <p>&copy; 2025 VanLife</p>
+      </footer>
     </BrowserRouter>
   )
 }

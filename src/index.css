@@ -4,9 +4,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Inter";
+}
+
+body{
+  background-color: #FFF7ED;
 }
 
 #root{
   box-sizing: border-box;
-  margin: 10px;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
