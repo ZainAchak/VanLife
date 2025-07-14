@@ -27,6 +27,18 @@ export default function VansList() {
     ))
     return(
         <div className="vansWrapper">
+            <div className="title-filter">
+                <h1>Explore our van options</h1>
+                <div className="filters">
+                    <div className="filterButton">
+                        <button className="btn-filter">Simple</button>
+                        <button className="btn-filter">Luxury</button>
+                        <button className="btn-filter">Rugged</button>
+                    </div>
+                    <a href="#">Clear Filters</a>
+                </div>
+            </div>
+
             <div className="vans-container">
                 {vansDisplay}
             </div>
