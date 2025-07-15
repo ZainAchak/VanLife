@@ -5,6 +5,7 @@ import About from './pages/About'
 import VansList from './pages/VansList'
 
 import "./server"
+import VanDetail from './pages/VanDetail'
 
 export default function App() {
   return(
@@ -21,6 +22,7 @@ export default function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/vans' element={<VansList/>}/>
+        <Route path='/vans/:id' element={<VanDetail/>}/>
       </Routes>
       <footer>
         <p>&copy; 2025 VanLife</p>

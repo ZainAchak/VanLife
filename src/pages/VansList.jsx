@@ -1,30 +1,43 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 
 export default function VansList() {
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
         fetch("/api/vans")
             .then(res=>res.json())
-            .then(json=>setData(json.vans))
-            .catch(err=>console.log("failed to fetch vans:", err));
+            .then(json=>{
+                setData(json.vans)
+                setLoading(false);
+            })
+            .catch(err=>
+                console.log("failed to fetch vans:", err));
+                // setData(false)
+            
         },[])
 
     const vansDisplay = data.map((van)=>(
         <div className="singleVan" key={van.id}>
-                <img src={van.imageUrl} alt="" />
-                <div className="van-description">
-                    <h2 className="vanTitle">
-                        {van.name}
-                    </h2>
-                    <span className="vanPricePDay">
-                        <h2>${van.price}</h2>
-                        <p>/day</p>
-                    </span>
-                </div>
+            <Link style={{textDecoration: "none",color:"black"}} to={`/vans/${van.id}`}>
+                <img className="singleVanImg" src={van.imageUrl} alt="" />
+                    <div className="van-description">
+                        <h2 className="vanTitle">
+                            {van.name}
+                        </h2>
+                        <span className="vanPricePDay">
+                            <h2>${van.price}</h2>
+                            <p>/day</p>
+                        </span>
+                    </div>
+                </Link>
                 <button className={`btn-${van.type}`}>{van.type.charAt(0).toUpperCase() + van.type.slice(1)}</button>
-            </div>
-    ))
+            </div>))
+
+    // if (loading) {
+    //     return <div className="loader"></div>
+    // }
     return(
         <div className="vansWrapper">
             <div className="title-filter">
@@ -40,9 +53,9 @@ export default function VansList() {
             </div>
 
             <div className="vans-container">
-                {vansDisplay}
+                {loading ? <div className="loader"></div> :vansDisplay}
+                {/* {vansDisplay} */}
             </div>
         </div>
         
-    )
-}
+        )}

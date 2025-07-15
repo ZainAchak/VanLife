@@ -4,7 +4,9 @@ import aboutbg from '../assets/images/aboutbg.png'
 export default function About() {
     return(
         <div className="about-page-container">
-            <img src={aboutbg} alt="" />
+            <div className="imageWrraper">
+                <img src={aboutbg} alt="" />
+            </div>
             <div className="about-page-content">
                 <h1>Don’t squeeze in a sedan when you could relax in a van.</h1>
 
