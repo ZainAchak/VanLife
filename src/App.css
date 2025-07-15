@@ -16,6 +16,10 @@ header{
     max-width: 1250px;
 }
 
+main{
+    min-height: 80vh;
+}
+
 nav {
     display: flex;
     gap: 2rem;
@@ -373,15 +377,24 @@ footer{
 
 /* HTML: <div class="loader"></div> */
 .loader {
-  width: 60px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  --webkit-mask:linear-gradient(0deg,#000 55%,#0000 0) bottom/100% 18.18%;
-  background:
-   linear-gradient(#f03355 0 0) bottom/100% 0% no-repeat
-   #ddd;
-  animation: l8 2s infinite steps(7);
+    margin: 0 auto;
+    width: fit-content;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    background: radial-gradient(circle closest-side,#000 94%,#0000) right/calc(200% - 1em) 100%;
+    animation: l24 1s infinite alternate linear;
 }
-@keyframes l8 {
-    100% {background-size:100% 115%}
+.loader::before {
+  content: "Loading...";
+  line-height: 1em;
+  color: #0000;
+  background: inherit;
+  background-image: radial-gradient(circle closest-side,#fff 94%,#000);
+  -webkit-background-clip:text;
+          background-clip:text;
+}
+
+@keyframes l24{
+  100%{background-position: left}
 }

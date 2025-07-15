@@ -2,20 +2,34 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 
 export default function VansList() {
+    const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        fetch("/api/vans")
-            .then(res=>res.json())
-            .then(json=>{
+        async function loadnfetch(){
+            try{
+                const res = await fetch("/api/vans")
+                const json = await res.json()
                 setData(json.vans)
-                setLoading(false);
-            })
-            .catch(err=>
-                console.log("failed to fetch vans:", err));
-                // setData(false)
-            
+                await wait(4000)
+                setLoading(false)
+                
+            }catch(err){
+                console.error("Van data fetch error",err)
+            }
+        }
+        loadnfetch()
+        // fetch("/api/vans")
+        //     .then(res=>res.json())
+        //     .then(json=>{
+        //         setData(json.vans)
+        //         setLoading(false);
+        //     })
+        //     .catch(err=>
+        //         console.log("failed to fetch vans:", err));
+        //         // setData(false)
         },[])
 
     const vansDisplay = data.map((van)=>(
