@@ -1,13 +1,19 @@
-header {
+header{
     display: flex;
     justify-content: center;
+}
+
+.headerData {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     font-size: 1.8rem;
     font-family: 'Inter';
     height: 8rem;
     background-color: #FFF7ED;
     /* border-radius: 15px 15px 0px 0px; */
-    max-width: 100%;
+    width: 100%;
+    max-width: 1250px;
 }
 
 nav {
@@ -30,7 +36,7 @@ nav > a:hover {
 .site-logo{
     text-decoration: none;
     justify-self: flex-start;
-    flex: 1;
+    /* flex: 1; */
     font-size: 2.5rem;
     margin-left: 1.5rem;
     font-weight: bolder;
@@ -102,6 +108,15 @@ nav > a:hover {
     align-items: center;
 }
 
+.about-page-content > p{
+    font-size: 1.1rem;
+}
+
+.about-page-content > h1{
+    font-size: 2.2rem;
+}
+
+
 .about-page-container > .imageWrraper > img {
   min-width: 100vw;
   /* max-height: 20%; */
@@ -134,7 +149,7 @@ nav > a:hover {
 }
 
 .about-page-cta > h2{
-    font-size: 2.5rem;
+    font-size: 2.1rem;
     width: 100%;
     max-width: 600px;
 }
@@ -160,7 +175,8 @@ nav > a:hover {
     flex-direction: column;
     gap: 2rem;
     margin-bottom: 3rem;
-    min-width: 620px;
+    width: 100%;
+    max-width: 640px;
 }
 
 .filters{
@@ -326,9 +342,28 @@ footer{
         padding: 10px 75px;
     }
 
+    .vansWrapper > .title-filter{
+        max-width: 400px;
+    }
+    
+    .about-page-cta > h2{
+        font-size: 2rem;
+    }
+
+    .about-page-content > h1{
+        font-size: 2rem;
+    }
+
+    .about-page-content > p{
+        font-size: 1rem;
+    }
+
 }
 
 @media (min-width:1100px) {
+    .vansWrapper > .title-filter{
+        max-width: 1000px;
+    }
     .vans-container{
         grid-template-columns: repeat(3,1fr);
         column-gap: 2.4rem;

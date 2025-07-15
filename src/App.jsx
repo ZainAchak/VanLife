@@ -6,17 +6,12 @@ import VansList from './pages/VansList'
 
 import "./server"
 import VanDetail from './pages/VanDetail'
+import Header from './pages/Header'
 
 export default function App() {
   return(
     <BrowserRouter>
-      <header>
-        <Link className='site-logo' to='/'>#VANLIFE</Link>
-        <nav>
-          <Link to='/about'>About</Link>
-          <Link to='/vans'>Vans</Link>
-        </nav>
-      </header>
+      <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/home' element={<Home/>}/>
