@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function VanDetail() {
     const [vanData, setVanData] = useState(null);
@@ -20,12 +20,15 @@ export default function VanDetail() {
     if (!loading){
         return (
             <div className="singleVanDetails">
-                <img src={vanData.imageUrl} alt="" />
-                <div className="single-description-details">
-                    <button className={`btn-${vanData.type}`}>{vanData.type}</button>
-                    <h3>{"$"+vanData.price}<span style={{fontWeight:100,fontSize:"15px"}}>/day</span></h3>
-                    <p>{vanData.description}</p>
-                    <button className="rentbtn">Rent this van</button>
+                <div className="singleVanDetailsExp">
+                    <div className="backtoVans">🔙&nbsp;&nbsp;&nbsp;<Link to={"/vans"}><span>Back to all vans</span></Link></div>
+                    <img src={vanData.imageUrl} alt="" />
+                    <div className="single-description-details">
+                        <button className={`btn-${vanData.type}`}>{vanData.type}</button>
+                        <h3>{"$"+vanData.price}<span style={{fontWeight:100,fontSize:"15px"}}>/day</span></h3>
+                        <p>{vanData.description}</p>
+                        <button className="rentbtn">Rent this van</button>
+                    </div>
                 </div>
             </div>
     )}
