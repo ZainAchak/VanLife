@@ -106,7 +106,6 @@ nav > a:hover {
 .about-page-container > .imageWrraper{
     max-height: 500px;
     overflow: hidden;
-    background-color: red;
     display: flex;
     justify-content: center;  /* horizontally center */
     align-items: center;

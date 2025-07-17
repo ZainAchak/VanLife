@@ -8,7 +8,7 @@ export default function VanDetail() {
     const [loading, setLoading] = useState(true);
     const params = useParams();
     const vanId = params.id;
-    console.log(params);
+    // console.log(params);
 
     useEffect(() => {
         async function loadingg(){

@@ -13,7 +13,7 @@ export default function VansList() {
                 const res = await fetch("/api/vans")
                 const json = await res.json()
                 setData(json.vans)
-                await wait(4000)
+                await wait(1500)
                 setLoading(false)
                 
             }catch(err){
