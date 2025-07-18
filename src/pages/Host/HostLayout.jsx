@@ -1,20 +1,30 @@
-import { Outlet,Link } from "react-router-dom"
+import { Outlet,NavLink } from "react-router-dom"
 
 export default function HostLayout(){
     return(
-        <>
-        <nav>
-            <Link to=''>Dashboard</Link>
-            <Link to='income'>Income</Link>
-            <Link to='reviews'>Reviews</Link>
-        </nav>
-        <h1>Host Layout Start</h1>
-            <br />
-            <br />
-                <Outlet/>
-            <br />
-            <br />
-        <h3>Host layout End</h3>
-        </> 
+        
+        <div className="HostLayoutWrapper">
+            <nav>
+                <NavLink 
+                    className={(obj)=>obj.isActive ? "isActiveNav" : null}
+                    to='' end>Dashboard</NavLink>
+
+                {/* The end prop tells <NavLink> to only consider the route as active if the current URL exactly matches the to prop — and not any sub-paths. */}
+
+                <NavLink
+                    className={(obj)=>obj.isActive ? "isActiveNav" : null}
+                    to='income'>Income</NavLink>
+
+                <NavLink
+                    className={(obj)=>obj.isActive ? "isActiveNav" : null}
+                    to='vans'>Vans</NavLink>
+
+                <NavLink
+                    className={(obj)=>obj.isActive ? "isActiveNav" : null} 
+                    to='reviews'>Reviews</NavLink>
+            </nav>
+            
+            <Outlet/>
+        </div> 
     )
 }

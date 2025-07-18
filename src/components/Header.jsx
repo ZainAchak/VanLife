@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 
 export default function Header(){
     return(
@@ -6,9 +6,15 @@ export default function Header(){
             <div className='headerData'>
                 <Link className='site-logo' to='/'>#VANLIFE</Link>
                 <nav>
-                <Link to='/host'>Host</Link>
-                <Link to='/about'>About</Link>
-                <Link to='/vans'>Vans</Link>
+                    <NavLink 
+                        className={ (obj)=>(obj.isActive ? "isActiveNav" : null) } 
+                        to='host'>Host</NavLink>
+                    <NavLink 
+                        className={(obj)=>obj.isActive ? "isActiveNav" : null}
+                        to='about'>About</NavLink>
+                    <NavLink 
+                        className={(obj)=>obj.isActive ? "isActiveNav" : null}
+                        to='vans'>Vans</NavLink>
                 </nav>
             </div>
         </header>
