@@ -6,12 +6,18 @@ export default function HostVans(){
 
     useEffect(()=>{
         async function getData (){
-            try{
-                const res = await fetch("/api/host/vans")
-                const json = await res.json()
-                setHostVans(json.vans)
-            }catch(err){
-                console.error("found error fetching host vans",err)
+            const cached = sessionStorage.getItem('hostVans')
+            if(cached){
+                setHostVans(JSON.parse(cached))
+            }else{
+                try{
+                    const res = await fetch("/api/host/vans")
+                    const json = await res.json()
+                    setHostVans(json.vans)
+                    sessionStorage.setItem("hostVans",JSON.stringify(json.vans))
+                }catch(err){
+                    console.error("found error fetching host vans",err)
+                }
             }
         }
 
@@ -19,7 +25,7 @@ export default function HostVans(){
     },[])
 
     const vansList = hostVans.map((van,index)=>(
-        <Link to={van.id}>
+        <Link key={van.id} to={van.id}>
             <div className="HostVanItems">
                 <img src={van.imageUrl} alt="" />
                 <div>

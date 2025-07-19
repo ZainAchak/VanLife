@@ -7,7 +7,7 @@ export default function HostLayout(){
             <nav>
                 <NavLink 
                     className={(obj)=>obj.isActive ? "isActiveNav" : null}
-                    to='' end>Dashboard</NavLink>
+                    to='.' end>Dashboard</NavLink>
 
                 {/* The end prop tells <NavLink> to only consider the route as active if the current URL exactly matches the to prop — and not any sub-paths. */}
 

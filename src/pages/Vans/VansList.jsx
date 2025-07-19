@@ -9,15 +9,21 @@ export default function VansList() {
 
     useEffect(()=>{
         async function loadnfetch(){
-            try{
-                const res = await fetch("/api/vans")
-                const json = await res.json()
-                setData(json.vans)
-                await wait(1500)
+            const cached = sessionStorage.getItem("VansList");
+            if(cached){
+                setData(JSON.parse(cached))
                 setLoading(false)
-                
-            }catch(err){
-                console.error("Van data fetch error",err)
+            }else{
+                try{
+                    const res = await fetch("/api/vans")
+                    const json = await res.json()
+                    setData(json.vans)
+                    await wait(1000)
+                    setLoading(false)
+                    sessionStorage.setItem("VansList", JSON.stringify(json.vans));
+                }catch(err){
+                    console.error("Van data fetch error",err)
+                }
             }
         }
         loadnfetch()

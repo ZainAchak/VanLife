@@ -17,7 +17,12 @@ export default function HostVanDetail(){
     return(
             hostvanData && 
             <div className="HostVanDetailWrapper">
-                <span>🔙&nbsp;&nbsp;&nbsp;<Link to={`/host/vans`}>Back to all vans</Link></span>
+                <span>🔙&nbsp;&nbsp;&nbsp;
+                    <Link   to='..' 
+                            relative="path">
+                        Back to all vans
+                    </Link>
+                </span>
                 <div className="HostVanDetailImgTitle">
                     <img src={hostvanData.imageUrl} alt="" />
                     <div className="HostVanDetailsIT2">
