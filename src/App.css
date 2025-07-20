@@ -22,6 +22,10 @@ header{
     border-bottom: 2px dashed rgba(78, 77, 77, 0.295) ;
 }
 
+.isActiveFilterBtn{
+    background-color: rgb(117, 115, 115) !important;
+}
+
 main{
     min-height: 80vh;
 }
@@ -58,7 +62,7 @@ nav > a:hover {
     margin-bottom: -1px;
     color: white;
     height: 80vh;
-    background-image: url('/src/assets/images/homebg.png'); /* relative or absolute path */
+    background-image: url('/src/assets/images/homepage.png'); /* relative or absolute path */
     background-size: cover;       /*Ensures the image covers the entire container */
     background-position: center;  /*Center the image */
     background-repeat: no-repeat;  /*Prevents the image from repeating */
@@ -78,11 +82,14 @@ nav > a:hover {
 .home-container > h1{
     max-width: 800px;
     font-size: 3.5rem;
+    text-align: center;
 }
 
 .home-container > p{
-    max-width: 800px;
-    font-size: 1.3rem;
+    max-width: 700px;
+    font-size: 1.5rem;
+    text-align: center;
+    color: rgb(255, 251, 0);
 }
 
 .home-container > .findVanBtn{

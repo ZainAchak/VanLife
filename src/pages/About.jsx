@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import aboutbg from '../assets/images/aboutbg.png'
+import aboutbg from '../assets/images/aboutpage.png'
 
 export default function About() {
     return(

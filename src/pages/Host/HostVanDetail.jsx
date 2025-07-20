@@ -37,7 +37,7 @@ export default function HostVanDetail(){
                 </div>
 
                 <nav>
-                    <NavLink end to={''} 
+                    <NavLink end to={'.'} 
                         style={{fontSize:"1.2rem"}}
                         className={(obj)=>obj.isActive ? "isActiveNav" : null}>
                         Details
