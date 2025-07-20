@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 export default function VanDetail() {
     const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -8,6 +8,10 @@ export default function VanDetail() {
     const [loading, setLoading] = useState(true);
     const params = useParams();
     const vanId = params.id;
+    const location = useLocation()
+    console.log("location",location)
+    console.log("path",`${location.pathname}?${location.state.search}`)
+
     // console.log(params);
 
     useEffect(() => {
@@ -37,7 +41,13 @@ export default function VanDetail() {
         return (
             <div className="singleVanDetails">
                 <div className="singleVanDetailsExp">
-                    <div className="backtoVans">🔙&nbsp;&nbsp;&nbsp;<Link to={"/vans"}><span>Back to all vans</span></Link></div>
+                    <div className="backtoVans">🔙&nbsp;&nbsp;&nbsp;
+                        <Link to={`..?${location.state.search}`}
+                        relative="path">
+                            <span>Back to all vans</span>
+                        </Link>
+                    </div>
+
                     {loading ? (
                         <div className="loader"></div>
                     ) : (

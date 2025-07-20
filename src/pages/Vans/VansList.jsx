@@ -37,29 +37,31 @@ export default function VansList() {
             }
         }
         loadnfetch()
-        },[data,searchParams])
+        },[])
     
     
     const vansDisplay = data.filter(
                                 searchParams.get("type")
                                 ? (van)=>van.type === searchParams.get("type")
-                                : (van)=>van)
-                                .map((van)=>(
-                                        <div className="singleVan" key={van.id}>
-                                            <Link style={{textDecoration: "none",color:"black"}} to={`/vans/${van.id}`}>
-                                                <img className="singleVanImg" src={van.imageUrl} alt="" />
-                                                    <div className="van-description">
-                                                        <h2 className="vanTitle">
-                                                            {van.name}
-                                                        </h2>
-                                                        <span className="vanPricePDay">
-                                                            <h2>${van.price}</h2>
-                                                            <p>/day</p>
-                                                        </span>
-                                                    </div>
-                                                </Link>
-                                                <button className={`btn-${van.type}`}>{van.type.charAt(0).toUpperCase() + van.type.slice(1)}</button>
-                                        </div>))
+                        : (van)=>van)
+                        .map((van)=>(
+                        <div className="singleVan" key={van.id}>
+                            <Link   style={{textDecoration: "none",color:"black"}} 
+                                    to={van.id}
+                                    state={{search: searchParams.toString()}}>
+                                <img className="singleVanImg" src={van.imageUrl} alt="" />
+                                    <div className="van-description">
+                                        <h2 className="vanTitle">
+                                            {van.name}
+                                        </h2>
+                                        <span className="vanPricePDay">
+                                            <h2>${van.price}</h2>
+                                            <p>/day</p>
+                                        </span>
+                                    </div>
+                                </Link>
+                                <button className={`btn-${van.type}`}>{van.type.charAt(0).toUpperCase() + van.type.slice(1)}</button>
+                        </div>))
 
     // useEffect(()=>{},[searchParams])
     return(
@@ -68,15 +70,21 @@ export default function VansList() {
                 <h1>Explore our van options</h1>
                 <div className="filters">
                     <div className="filterButton">
-                        <button className={searchParams.get("type") === "simple" ?"btn-filter isActiveFilterBtn" : "btn-filter"} 
+                        <button className={searchParams.get("type") === "simple" 
+                                                ? "btn-filter isActiveFilterBtn" 
+                                                : "btn-filter"} 
                                 onClick={()=>setSearchParams({type:"simple"})}>Simple
                         </button>
 
-                        <button className={searchParams.get("type") === "luxury" ?"btn-filter isActiveFilterBtn" : "btn-filter"} 
+                        <button className={searchParams.get("type") === "luxury" 
+                                                ? "btn-filter isActiveFilterBtn" 
+                                                : "btn-filter"} 
                                 onClick={()=>setSearchParams({type:"luxury"})}>Luxury
                         </button>
 
-                        <button className={searchParams.get("type") === "rugged" ?"btn-filter isActiveFilterBtn" : "btn-filter"} 
+                        <button className={searchParams.get("type") === "rugged" 
+                                                ? "btn-filter isActiveFilterBtn" 
+                                                : "btn-filter"} 
                                 onClick={()=>setSearchParams({type:"rugged"})}>Rugged
                         </button>
 
