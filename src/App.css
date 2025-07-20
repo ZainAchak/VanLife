@@ -417,6 +417,19 @@ footer{
     text-align: justify;
 }
 
+.HostSingleVanPhotosWrapper{
+    align-self: center;
+    display: flex;
+    justify-content: center;
+}
+
+.HostSingleVanPhotos{
+    width: 90%;
+    max-width: 600px;
+    border-radius: 20px;
+    align-self: center;
+}
+
 @media (max-width:620px) {
     .vans-container{
     grid-template-columns: repeat(1,1fr);
