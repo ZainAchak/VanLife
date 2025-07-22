@@ -1,12 +1,29 @@
-# React + Vite
+# 🚐 VanLife - Find Your Perfect Camper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live Demo 🚀](https://findoutvanlife.netlify.app/)
 
-Currently, two official plugins are available:
+VanLife is a React-based web application that allows users to explore and manage camper van listings. It's designed to mimic a real-world product listing and dashboard experience, utilizing **React Router v6+**, dynamic routes, nested routes, and stateful navigation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🔍 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔗 Client-side routing with **React Router v6**
+- 🧭 Nested routes with dynamic parameters
+- 🗂 Filter vans by type (e.g., Luxury, Rugged, Simple)
+- 🧑‍💼 Host dashboard with tabs (Income, Reviews, Vans, etc.)
+- 🧠 State-preserving navigation using `state` and `searchParams`
+- 💾 Data loading via mock `/api` endpoints
+- 🔁 Persistent search filters with URL parameters
+- ⚛️ Component reusability and prop-driven UI
+- 🎯 Responsive and mobile-friendly design
+
+---
+
+## 🛠 Built With
+
+- **React** (Hooks + Functional Components)
+- **React Router DOM v6.17+**
+- **CSS Modules** / Custom styling
+- **Local JSON API mock (static data simulation)**
+- **Deployed with Netlify**
