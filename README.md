@@ -1,6 +1,6 @@
 # 🚐 VanLife - Find Your Perfect Camper
 
-[Live Demo]🚀(https://findoutvanlife.netlify.app/)
+[Live Demo](https://findoutvanlife.netlify.app/)🚀
 
 VanLife is a React-based web application that allows users to explore and manage camper van listings. It's designed to mimic a real-world product listing and dashboard experience, utilizing **React Router v6+**, dynamic routes, nested routes, and stateful navigation.
 
