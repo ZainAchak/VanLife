@@ -10,7 +10,7 @@ export default function VanDetail() {
     const vanId = params.id;
     const location = useLocation()
     console.log("location",location)
-    console.log("path",`${location.pathname}?${location.state.search}`)
+    // console.log("path",`${location.pathname}?${location.state.search}`)
 
     // console.log(params);
 
@@ -37,14 +37,15 @@ export default function VanDetail() {
         //     .catch(err => console.error("error loading data",err))
     }, []);
 
-    
+        const searchExist = location.state?.search || ''
+        console.log("searchExist",searchExist)
         return (
             <div className="singleVanDetails">
                 <div className="singleVanDetailsExp">
                     <div className="backtoVans">🔙&nbsp;&nbsp;&nbsp;
-                        <Link to={`..?${location.state.search}`}
+                        <Link to={`..?${searchExist}`}
                         relative="path">
-                            <span>Back to all vans</span>
+                            <span>{searchExist ? `Back to ${searchExist.split("=")[1]} vans` : "Back to all vans"}</span>
                         </Link>
                     </div>
 
