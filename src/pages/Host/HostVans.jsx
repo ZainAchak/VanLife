@@ -1,28 +1,25 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLoaderData } from "react-router-dom"
+
+export function loader(){
+    async function getData (){
+        let data =null
+        try{
+            const res = await fetch("/api/host/vans")
+            const json = await res.json()
+            data = json.vans
+        }
+        catch(err){
+            console.error("found error fetching host vans",err)
+        }
+        return data
+    }
+    return getData()
+}
 
 export default function HostVans(){
-    const [hostVans, setHostVans] = useState([])
-
-    useEffect(()=>{
-        async function getData (){
-            const cached = sessionStorage.getItem('hostVans')
-            if(cached){
-                setHostVans(JSON.parse(cached))
-            }else{
-                try{
-                    const res = await fetch("/api/host/vans")
-                    const json = await res.json()
-                    setHostVans(json.vans)
-                    sessionStorage.setItem("hostVans",JSON.stringify(json.vans))
-                }catch(err){
-                    console.error("found error fetching host vans",err)
-                }
-            }
-        }
-
-        getData()
-    },[])
+    console.log("Loader Data",useLoaderData())
+    const hostVans = useLoaderData();
 
     const vansList = hostVans.map((van,index)=>(
         <Link key={van.id} to={van.id}>
@@ -42,3 +39,24 @@ export default function HostVans(){
         </div>
     )
 }
+
+ // const [hostVans, setHostVans] = useState([])
+    // useEffect(()=>{
+    //     async function getData (){
+    //         const cached = sessionStorage.getItem('hostVans')
+    //         if(cached){
+    //             setHostVans(JSON.parse(cached))
+    //         }else{
+    //             try{
+    //                 const res = await fetch("/api/host/vans")
+    //                 const json = await res.json()
+    //                 setHostVans(json.vans)
+    //                 sessionStorage.setItem("hostVans",JSON.stringify(json.vans))
+    //             }catch(err){
+    //                 console.error("found error fetching host vans",err)
+    //             }
+    //         }
+    //     }
+
+    //     getData()
+    // },[])

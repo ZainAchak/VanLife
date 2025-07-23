@@ -430,6 +430,52 @@ footer{
     align-self: center;
 }
 
+.login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.login-container > h1{
+    font-size: 3rem;
+    text-align: center;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 700px;
+    gap: 0.3rem;
+}
+
+.login-form > input{
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 0.2px solid rgba(88, 86, 86, 0.199);
+    background-color: rgba(181, 221, 247, 0.486);
+}
+
+.login-form > button{
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #FF8C38;
+    color: white;
+    margin-top: 1rem;
+}
+
 @media (max-width:620px) {
     .vans-container{
     grid-template-columns: repeat(1,1fr);
