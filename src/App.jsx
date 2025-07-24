@@ -24,7 +24,7 @@ import HostSingleVanPricing from './pages/Host/HostSingleVanPricing'
 import HostSingleVanPhotos from './pages/Host/HostSingleVanPhotos'
 import NotFound404 from './pages/NotFound404'
 import BrokenPage from './pages/BrokenPage'
-import Login from './pages/Login'
+import Login, {loader as loginLoader} from './pages/Login'
 import { requireAuth } from './components/utils'
 
 // async function requireAuth() {
@@ -41,7 +41,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route index element={<Home/>}/>
     <Route path='home' element={<Home/>}/>
     <Route path='about' element={<About/>}/>
-    <Route path='login' element={<Login/>}/>
+    <Route path='login' element={<Login/>} loader={loginLoader}/>
 
     {/* VANS */}
     <Route  path='vans' 
