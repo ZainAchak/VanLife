@@ -2,7 +2,8 @@ import { Link, useRouteError } from "react-router-dom";
 
 export default function BrokenPage() {
   const theError = useRouteError()
-  console.log("Broken page",theError)
+  // console.log("Broken page",theError)
+  // console.log("Broken Page",theError)
   return (
     <div style={styles.container}>
       <div style={styles.brokenIcon}>💥</div>

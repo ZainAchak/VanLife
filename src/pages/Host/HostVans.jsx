@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { Link, useLoaderData } from "react-router-dom"
+import { requireAuth } from "../../components/utils"
 
 export function loader(){
     async function getData (){
+        await requireAuth()
         let data =null
         try{
             const res = await fetch("/api/host/vans")

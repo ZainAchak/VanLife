@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLoaderData, useLocation, useParams } from "react-router-dom";
+import { Link, Navigate, redirect, useLoaderData, useLocation, useParams } from "react-router-dom";
 
 export function loader({params}){
     async function getData(){

@@ -2,7 +2,8 @@
 
 import {  RouterProvider, 
           createBrowserRouter, 
-          createRoutesFromElements, Route } from 'react-router-dom'
+          createRoutesFromElements, Route, 
+          redirect} from 'react-router-dom'
 
 import './App.css'
 import Home from './pages/Home'
@@ -10,20 +11,30 @@ import About from './pages/About'
 import VansList, {loader as vansListLoader} from './pages/Vans/VansList'
 
 import "./server"
-import VanDetail, {loader as HostVanDetailLoader} from './pages/Vans/VanDetail'
+import VanDetail, {loader as VanDetailLoader} from './pages/Vans/VanDetail'
 import Layout from './components/Layout'
 import Dashboard from './pages/Host/Host'
 import Income from './pages/Host/Income'
 import Reviews from './pages/Host/Reviews'
 import HostLayout from './pages/Host/HostLayout'
 import HostVans, {loader as hostVansLoader} from './pages/Host/HostVans'
-import HostVanDetail from './pages/Host/HostVanDetail'
+import HostVanDetail, {loader as hostVansDetailsLoader} from './pages/Host/HostVanDetail'
 import HostSingleVanDetail from './pages/Host/HostSingleVanDetail'
 import HostSingleVanPricing from './pages/Host/HostSingleVanPricing'
 import HostSingleVanPhotos from './pages/Host/HostSingleVanPhotos'
 import NotFound404 from './pages/NotFound404'
 import BrokenPage from './pages/BrokenPage'
 import Login from './pages/Login'
+import { requireAuth } from './components/utils'
+
+// async function requireAuth() {
+//     const isLoggedIn = false
+//     if (!isLoggedIn) {
+//         console.log("requireAuth loader called")
+//         return redirect("/login")
+//     }
+//     return null
+// }
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />}>
@@ -31,26 +42,32 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='home' element={<Home/>}/>
     <Route path='about' element={<About/>}/>
     <Route path='login' element={<Login/>}/>
+
+    {/* VANS */}
     <Route  path='vans' 
             loader={vansListLoader} 
             element={<VansList/>}
             errorElement={<BrokenPage/>}/>
-    <Route path='vans/:id' loader={HostVanDetailLoader} element={<VanDetail/>}/>
+    <Route path='vans/:id' loader={VanDetailLoader} element={<VanDetail/>}/>
     
+    {/* HOST */}
     <Route path='host' element={<HostLayout/>}>
-      <Route index element={<Dashboard/>}/>
-      <Route path='income' element={<Income/>}/>
-      <Route path='reviews' element={<Reviews/>}/>
-      <Route  path='vans' 
-              loader={hostVansLoader} 
-              errorElement={<BrokenPage/>} 
-              element={<HostVans/> }/>
-      
-      <Route path='vans/:id' element={<HostVanDetail/>}>
-        <Route index element={<HostSingleVanDetail/>}/>
-        <Route path='pricing' element={<HostSingleVanPricing/>}/>
-        <Route path='photos' element={<HostSingleVanPhotos/>}/>
-      </Route>
+
+        <Route index element={<Dashboard/>} loader={requireAuth} />
+        <Route path='income' element={<Income/>} loader={requireAuth}/>
+        <Route path='reviews' element={<Reviews/>} loader={requireAuth}/>
+        <Route  path='vans' element={<HostVans/> } loader={hostVansLoader}/>
+
+        {/* HOST/VANS/ID */}
+        <Route  path='vans/:id' 
+                element={<HostVanDetail/>} 
+                loader={hostVansDetailsLoader}>
+
+          <Route index element={<HostSingleVanDetail/>} loader={requireAuth}/>
+          <Route path='pricing' element={<HostSingleVanPricing/>} loader={requireAuth}/>
+          <Route path='photos' element={<HostSingleVanPhotos/>} loader={requireAuth}/>
+        </Route>
+
     </Route>
     <Route path='*' element={<NotFound404/>}/>
   </Route>
