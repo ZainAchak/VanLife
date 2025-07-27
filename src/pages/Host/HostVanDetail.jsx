@@ -7,7 +7,10 @@ export async function loader({params}){
         await requireAuth()
         const res = await fetch(`/api/host/vans/${params.id}`);
         const json = await res.json();
-        const data = json.vans[0];
+        const data = json.vans;
+        if (!data) {
+            throw new Error("Data not found")
+        }
         return data;
     } catch (err) {
         throw new Error(`Host Van Detail Page Loader Error: ${err.message || err}`);
@@ -16,11 +19,9 @@ export async function loader({params}){
 
 export default function HostVanDetail(){
     const hostvanData = useLoaderData()
-
-    
+    console.log(hostvanData)
     return(
-            hostvanData && 
-            <div className="HostVanDetailWrapper">
+           hostvanData && <div className="HostVanDetailWrapper">
                 <span>🔙&nbsp;&nbsp;&nbsp;
                     <Link   to='..' 
                             relative="path">

@@ -10,6 +10,7 @@ export function loader(){
             const res = await fetch("/api/host/vans")
             const json = await res.json()
             data = json.vans
+            console.log("loader",data)
         }
         catch(err){
             console.error("found error fetching host vans",err)
@@ -20,10 +21,9 @@ export function loader(){
 }
 
 export default function HostVans(){
-    console.log("Loader Data",useLoaderData())
     const hostVans = useLoaderData();
 
-    const vansList = hostVans.map((van,index)=>(
+    const vansList = hostVans?.map((van,index)=>(
         <Link key={van.id} to={van.id}>
             <div className="HostVanItems">
                 <img src={van.imageUrl} alt="" />
