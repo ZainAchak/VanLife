@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react"
-import { Link, redirect, useLoaderData, useSearchParams } from "react-router-dom";
+import { Link, redirect, useLoaderData, useNavigation, useSearchParams } from "react-router-dom";
 
 export function loader(){
     async function getData(){
@@ -18,6 +18,7 @@ export function loader(){
 
 export default function VansList() {
     const [searchParams, setSearchParams] = useSearchParams()
+    // const navigation  = useNavigation()
     const data = useLoaderData()
     
     const vansDisplay = data.filter(

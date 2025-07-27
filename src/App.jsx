@@ -16,7 +16,7 @@ import Layout from './components/Layout'
 import Dashboard from './pages/Host/Host'
 import Income from './pages/Host/Income'
 import Reviews from './pages/Host/Reviews'
-import HostLayout from './pages/Host/HostLayout'
+import HostLayout, {loader as hostLayoutLoader} from './pages/Host/HostLayout'
 import HostVans, {loader as hostVansLoader} from './pages/Host/HostVans'
 import HostVanDetail, {loader as hostVansDetailsLoader} from './pages/Host/HostVanDetail'
 import HostSingleVanDetail from './pages/Host/HostSingleVanDetail'
@@ -54,12 +54,15 @@ const router = createBrowserRouter(createRoutesFromElements(
             errorElement={<BrokenPage/>}/>
     <Route path='vans/:id' loader={VanDetailLoader} element={<VanDetail/>}/>
     
-    {/* HOST */}
-    <Route path='host' element={<HostLayout/>} errorElement={<BrokenPage/>} loader={async()=> await requireAuth()}>
+    {/* HOST - Protected */}
+    <Route  path='host' 
+            loader={hostLayoutLoader} 
+            element={<HostLayout/>} 
+            errorElement={<BrokenPage/>}>
 
-        <Route index element={<Dashboard/>} loader={async()=> await requireAuth()} errorElement={<BrokenPage/>} />
-        <Route path='income' element={<Income/>} loader={async()=> await requireAuth()} errorElement={<BrokenPage/>}/>
-        <Route path='reviews' element={<Reviews/>} loader={async()=> await requireAuth()} errorElement={<BrokenPage/>}/>
+        <Route index element={<Dashboard/>} loader={async({request})=> await requireAuth(request)} errorElement={<BrokenPage/>} />
+        <Route path='income' element={<Income/>} loader={async({request})=> await requireAuth(request)} errorElement={<BrokenPage/>}/>
+        <Route path='reviews' element={<Reviews/>} loader={async({request})=> await requireAuth(request)} errorElement={<BrokenPage/>}/>
         <Route  path='vans' element={<HostVans/> } loader={hostVansLoader} errorElement={<BrokenPage/>}/>
 
         {/* HOST/VANS/ID */}
@@ -68,9 +71,9 @@ const router = createBrowserRouter(createRoutesFromElements(
                 errorElement={<BrokenPage/>}
                 loader={hostVansDetailsLoader}>
 
-          <Route index element={<HostSingleVanDetail/>} errorElement={<BrokenPage/>} loader={async()=> await requireAuth()}/>
-          <Route path='pricing' element={<HostSingleVanPricing/>} errorElement={<BrokenPage/>} loader={async()=> await requireAuth()}/>
-          <Route path='photos' element={<HostSingleVanPhotos/>} errorElement={<BrokenPage/>} loader={async()=> await requireAuth()}/>
+          <Route index element={<HostSingleVanDetail/>} errorElement={<BrokenPage/>} loader={async({request})=> await requireAuth(request)}/>
+          <Route path='pricing' element={<HostSingleVanPricing/>} errorElement={<BrokenPage/>} loader={async({request})=> await requireAuth(request)}/>
+          <Route path='photos' element={<HostSingleVanPhotos/>} errorElement={<BrokenPage/>} loader={async({request})=> await requireAuth(request)}/>
         </Route>
 
     </Route>

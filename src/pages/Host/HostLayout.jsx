@@ -1,4 +1,10 @@
 import { Outlet,NavLink } from "react-router-dom"
+import { requireAuth } from "../../components/utils"
+
+export async function loader({request}){
+    await requireAuth(request)
+    return null
+}
 
 export default function HostLayout(){
     return(

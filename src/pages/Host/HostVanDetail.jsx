@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import { useParams,NavLink,Link, Outlet, useLoaderData, Navigate } from "react-router-dom"
 import { requireAuth } from "../../components/utils";
 
-export async function loader({params}){
+export async function loader({params, request}){
     try {
-        await requireAuth()
+        await requireAuth(request)
         const res = await fetch(`/api/host/vans/${params.id}`);
         const json = await res.json();
         const data = json.vans;
