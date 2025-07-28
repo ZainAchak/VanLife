@@ -1,49 +1,104 @@
-// import { useEffect, useState } from "react"
-import { Link, redirect, useLoaderData, useNavigation, useSearchParams } from "react-router-dom";
+import { Suspense } from "react"
+import { defer, Link, useLoaderData, Await, useSearchParams } from "react-router-dom";
+import { sleep } from "../Login";
+// import {Circles} from "react-loader-spinner"
 
 export function loader(){
-    async function getData(){
-        let currentData = null
-        try{
-            const res = await fetch("/api/vans")
-            const json = await res.json()
-            currentData = json.vans
-        }catch(err){
-            console.error("LOADER: Van data fetch error",err)
-        }
-        return currentData
-    }
-    return getData()
+    const res =  fetch("/api/vans")
+                .then(res=>res.json())
+                .then(json=>(json.vans))
+                
+    return defer({loaderData:res})
 }
+
+// export function loader(){
+//     async function getData(){
+//         let currentData = null
+//         try{
+//             // await sleep(3000)
+//             const res = await fetch("/api/vans")
+//             const json = await res.json()
+//             currentData = json.vans
+//         }catch(err){
+//             console.error("LOADER: Van data fetch error",err)
+//         }
+//         return currentData
+//     }
+//     return defer({loaderData:getData()})
+// }
+
+// export function loader(){
+//     async function getData(){
+//         let currentData = null
+//         try{
+//             const res = await fetch("/api/vans")
+//             const json = await res.json()
+//             currentData = json.vans
+//         }catch(err){
+//             console.error("LOADER: Van data fetch error",err)
+//         }
+//         return currentData
+//     }
+//     return getData()
+// }
 
 export default function VansList() {
     const [searchParams, setSearchParams] = useSearchParams()
     // const navigation  = useNavigation()
-    const data = useLoaderData()
+    const dataLoader = useLoaderData()
     
-    const vansDisplay = data.filter(
-            searchParams.get("type")
-            ? (van)=>van.type === searchParams.get("type")
-            : (van)=>van)
-            .map((van)=>(
-            <div className="singleVan" key={van.id}>
-                <Link   style={{textDecoration: "none",color:"black"}} 
-                        to={van.id}
-                        state={{search: searchParams.toString()}}>
+    // const vansDisplay = data.filter(
+    //     searchParams.get("type")
+    //     ? (van)=>van.type === searchParams.get("type")
+    //     : (van)=>van)
+    //     .map((van)=>(
+    //         <div className="singleVan" key={van.id}>
+    //             <Link   style={{textDecoration: "none",color:"black"}} 
+    //                     to={van.id}
+    //                     state={{search: searchParams.toString()}}>
                             
-                    <img className="singleVanImg" src={van.imageUrl} alt="" />
-                        <div className="van-description">
-                            <h2 className="vanTitle">
-                                {van.name}
-                            </h2>
-                            <span className="vanPricePDay">
-                                <h2>${van.price}</h2>
-                                <p>/day</p>
-                            </span>
-                        </div>
-                    </Link>
-                    <button className={`btn-${van.type}`}>{van.type.charAt(0).toUpperCase() + van.type.slice(1)}</button>
-            </div>))
+    //                 <img className="singleVanImg" src={van.imageUrl} alt="" />
+    //                     <div className="van-description">
+    //                         <h2 className="vanTitle">
+    //                             {van.name}
+    //                         </h2>
+    //                         <span className="vanPricePDay">
+    //                             <h2>${van.price}</h2>
+    //                             <p>/day</p>
+    //                         </span>
+    //                     </div>
+    //                 </Link>
+    //                 <button className={`btn-${van.type}`}>{van.type.charAt(0).toUpperCase() + van.type.slice(1)}</button>
+    //         </div>
+    //         ))
+
+    function getVansData(data){
+        const vansDisplay = data.filter(
+                searchParams.get("type")
+                ? (van)=>van.type === searchParams.get("type")
+                : (van)=>van)
+
+            return vansDisplay.map((van)=>(
+                <div className="singleVan" key={van.id}>
+                    <Link   style={{textDecoration: "none",color:"black"}} 
+                            to={van.id}
+                            state={{search: searchParams.toString()}}>
+                                
+                        <img className="singleVanImg" src={van.imageUrl} alt="" />
+                            <div className="van-description">
+                                <h2 className="vanTitle">
+                                    {van.name}
+                                </h2>
+                                <span className="vanPricePDay">
+                                    <h2>${van.price}</h2>
+                                    <p>/day</p>
+                                </span>
+                            </div>
+                        </Link>
+                        <button className={`btn-${van.type}`}>{van.type.charAt(0).toUpperCase() + van.type.slice(1)}</button>
+                </div>
+            ))}
+
     return(
         <div className="vansWrapper">
             <div className="title-filter">
@@ -74,11 +129,18 @@ export default function VansList() {
             </div>
 
             <div className="vans-container">
-                {/* {loading ? <div className="loader"></div> :vansDisplay} */}
-                {vansDisplay}
+                <Suspense fallback={<h1>Loading...</h1>}>
+
+                    <Await resolve={dataLoader.loaderData}>
+                        {getVansData}
+                    </Await>
+                </Suspense>
             </div>
         </div>
 )}
+
+{/* {loading ? <div className="loader"></div> :vansDisplay} */}
+{/* {vansDisplay} */}
 
 // const [data, setData] = useState([])
 // const [loading, setLoading] = useState(false);
